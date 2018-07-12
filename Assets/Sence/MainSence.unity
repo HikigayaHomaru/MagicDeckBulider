@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 1043214674}
   - component: {fileID: 1043214673}
   m_Layer: 0
-  m_Name: TestObject
+  m_Name: Calculater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,6 +224,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 395fac0c271824d4ca6c679fc4ab22f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Extrac: 10
+  Manu: 14
+  Num: 99
 --- !u!4 &1043214674
 Transform:
   m_ObjectHideFlags: 0
