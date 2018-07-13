@@ -225,8 +225,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Extrac: 10
-  Manu: 14
+  Manu: 42
   Num: 99
+  SmallNum: 4
+  BigNum: 3
 --- !u!4 &1043214674
 Transform:
   m_ObjectHideFlags: 0

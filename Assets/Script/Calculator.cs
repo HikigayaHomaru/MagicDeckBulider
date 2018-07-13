@@ -7,28 +7,33 @@ public class Calculator : MonoBehaviour {
     public ulong Extrac;//抽取数
     public ulong Manu;//合格样本
     public ulong Num;//样本总数
+    public ulong SmallNum;//期望最小数值
+    public ulong BigNum;//期望最大数值
 
     // Use this for initialization
     void Start()
     {
-        int mode = Mode(Extrac, Manu, Num);
-        float fal = 0;
+        float _sNum = 0;
+        float _bNum = 0;
         Debug.Log("期望值为" + Mean(Extrac, Manu, Num));
-        Debug.Log("众数为" + mode);
+        Debug.Log("众数为" + Mode(Extrac, Manu, Num));
         for(ulong i = 0; i <= Extrac; i++)
         {
             decimal hyp = HypDist(i, Extrac, Manu, Num);
             Debug.Log("超几何分布" + i + "=" + hyp);
-            if (i < (ulong)mode)
+            if (i < SmallNum)
             {
-                fal += (float)hyp;
+                _sNum += (float)hyp;
+            }
+            if (i > BigNum)
+            {
+                _bNum += (float)hyp;
             }
         }
-
-
-        Debug.Log("小于" + mode + "概率为" + fal * 100 + "%");
-
-
+        
+        Debug.Log("小于" + SmallNum + "概率为" + _sNum * 100 + "%");
+        Debug.Log("大于" + BigNum + "概率为" + _bNum * 100 + "%");
+        
         //Debug.Log("超几何分布(4,10,50,99) = " + HypDist(7, 13, 39, 99));
     }
     // Update is called once per frame
