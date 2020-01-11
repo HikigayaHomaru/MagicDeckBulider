@@ -15,12 +15,12 @@ public class Calculator : MonoBehaviour {
     {
         float _sNum = 0;
         float _bNum = 0;
-        Debug.Log("期望值为" + Mean(Extrac, Manu, Num));
-        Debug.Log("众数为" + Mode(Extrac, Manu, Num));
-        for(ulong i = 0; i <= Extrac; i++)
+        //Debug.Log("期望值为" + Mean(Extrac, Manu, Num));
+        //Debug.Log("众数为" + Mode(Extrac, Manu, Num));
+        for (ulong i = 0; i <= Extrac; i++)
         {
             decimal hyp = HypDist(i, Extrac, Manu, Num);
-            Debug.Log("超几何分布" + i + "=" + hyp);
+            //Debug.Log("超几何分布" + i + "=" + hyp);
             if (i < SmallNum)
             {
                 _sNum += (float)hyp;
@@ -31,8 +31,8 @@ public class Calculator : MonoBehaviour {
             }
         }
         
-        Debug.Log("小于" + SmallNum + "概率为" + _sNum * 100 + "%");
-        Debug.Log("大于" + BigNum + "概率为" + _bNum * 100 + "%");
+        //Debug.Log("小于" + SmallNum + "概率为" + _sNum * 100 + "%");
+        //Debug.Log("大于" + BigNum + "概率为" + _bNum * 100 + "%");
         
         //Debug.Log("超几何分布(4,10,50,99) = " + HypDist(7, 13, 39, 99));
     }
@@ -40,20 +40,24 @@ public class Calculator : MonoBehaviour {
     void Update() {
 
     }
+    static public decimal C_HypDist(ulong k, ulong n, ulong m, ulong N)
+    {
+        return HypDist(k, n, m, N);
+    }
 
     /// <summary>
     /// Using to calculate Mode(众数).
     /// </summary>
     /// <returns></returns>
-    public int Mode(ulong n, ulong m, ulong N)
+    static public int Mode(ulong n, ulong m, ulong N)
     {
         int x = (int)n + 1;
         int y = (int)m + 1;
         int z = (int)N + 2;
         return ((x * y) / z);
     }
-        
-        
+
+
     /// <summary>
     /// Using to calculate Mean(期望值).
     /// </summary>
@@ -61,7 +65,7 @@ public class Calculator : MonoBehaviour {
     /// <param name="m"></param>
     /// <param name="N"></param>
     /// <returns></returns>
-    private float Mean(ulong n, ulong m, ulong N)
+    static private float Mean(ulong n, ulong m, ulong N)
     {
         float x = (float)n * (float)m / (float)N;
         return x;
@@ -71,7 +75,7 @@ public class Calculator : MonoBehaviour {
     /// Using to calculate Hypergeometric distribution(超几何分布).
     /// </summary>
     /// <returns></returns>
-    private decimal HypDist(ulong k, ulong n, ulong m, ulong N)
+    static private decimal HypDist(ulong k, ulong n, ulong m, ulong N)
     {
         ulong a = _nCm(m, k);
         ulong b = _nCm(N - m, n - k);
@@ -85,14 +89,14 @@ public class Calculator : MonoBehaviour {
         //Debug.Log("c / d = " + c / d);
         return (c / d);
     }
-    
+
     /// <summary>
     /// Using to calculate Binomial coefficient(二項式係數/組合/選擇).
     /// </summary>
     /// <param name="n"></param>
     /// <param name="m"></param>
     /// <returns></returns>
-    private ulong _nCm(ulong n,ulong m)
+    static private ulong _nCm(ulong n,ulong m)
     {
         if (m == 0) return 1;
         if (n == 0) return 0;
